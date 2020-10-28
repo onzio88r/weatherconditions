@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "android-5-0-lollipop-material-4068.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
