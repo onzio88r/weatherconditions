@@ -7,6 +7,6 @@
 
 import Foundation
 
-static let openweatherURL = "api.openweathermap.org/data/2.5/forecast"
-static let APIKey = "e53a70fab51d98c3061bff74b4c4b010" //TODO: move to stored data 
+let openweatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=Roma,it&appid=e53a70fab51d98c3061bff74b4c4b010"
+let APIKey = "e53a70fab51d98c3061bff74b4c4b010" //TODO: move to stored data
 
