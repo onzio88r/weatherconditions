@@ -26,4 +26,15 @@ struct APIAgent {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    func run(_ request: URLRequest) -> AnyPublisher<Response<Data>, Error> {
+        return URLSession.shared
+            .dataTaskPublisher(for: request)
+            .tryMap { result -> Response<Data> in
+                return Response(value: result.data, response: result.response)
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
 }

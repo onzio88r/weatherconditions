@@ -11,6 +11,7 @@ import Combine
 enum WeatherAPI {
     static let agent = APIAgent()
     static var baseUrl = URL(string: openweatherURL)!
+    
 }
 
 extension WeatherAPI {
@@ -21,29 +22,25 @@ extension WeatherAPI {
            return run(request)
        }
     
+    static func weatherIcon(icon: String) -> AnyPublisher<Data, Error> {
+        let baseUrlIcon = URL(string: String(format: weatherIConURL, icon))!
+        
+        let request = URLRequest(url: baseUrlIcon)
+           return run(request)
+       }
+    
     static func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
             return agent.run(request)
                 .map(\.value)
                 .eraseToAnyPublisher()
         }
-}
-
-
-struct Forecast: Codable {
-    let city: City
-}
-
-struct City: Codable {
-    let id: Int
-    let name: String
-    let coord: Coordinate
-    let country: String
-    //TODO: TO be completed
+    
+    static func run(_ request: URLRequest) -> AnyPublisher<Data, Error> {
+            return agent.run(request)
+                .map(\.value)
+                .eraseToAnyPublisher()
+        }
     
     
 }
 
-struct Coordinate: Codable {
-    let lat: Double
-    let lon: Double
-}

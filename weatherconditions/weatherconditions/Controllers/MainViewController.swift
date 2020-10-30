@@ -13,40 +13,62 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var textFieldLeadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var weatherConditionLabel: UILabel!
+    @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var weatherImage: UIImageView!
     
-    private var disposables = Set<AnyCancellable>()
+    let viewModel =  MainViewModel()
+    private var cancellables: Set<AnyCancellable> = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        WeatherAPI.forecast(city: "Roma,it")
-            .print()
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { print($0) })
-            .store(in: &disposables)
+        initViewData()
+        bindViewModel()
         
-        textFieldLeadingConstraint.constant = searchButton.frame.origin.x - 10
-        self.textField.alpha = 0
+        viewModel.fetch()
+        
+        
+    }
+    
+    private func initViewData(){
+        cityName.text               = ""
+        weatherConditionLabel.text  = ""
+        sunriseLabel.text           = ""
+        sunsetLabel.text            = ""
+        
+    }
+    
+    private func bindViewModel() {
+        viewModel.objectWillChange.sink { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.rederForecast(self.viewModel.forecast)
+        }.store(in: &cancellables)
+    }
+    
+    private func rederForecast(_ forecast:Forecast){
+        self.cityName.text      = forecast.city.name
+        
+        self.sunriseLabel.text  = millisecondsToLocalDate(forecast.city.sunrise)
+        self.sunsetLabel.text   = millisecondsToLocalDate(forecast.city.sunset)
+        
+      
+        let image = UIImage(data: viewModel.weatherIconData)
+        weatherImage.image = image
     }
     
     
     @IBAction func searchAction(_ sender: Any) {
         
-        //TODO: little animation for text field, review and move in specifi function
-        textFieldLeadingConstraint.constant = 20
-        self.textField.alpha = 1
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .autoreverse, animations: {
-            
-            self.textField.layoutIfNeeded()
-        }, completion: nil)
         
-        
-    
     }
     
-
+    
 }
 

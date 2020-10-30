@@ -18,6 +18,9 @@
 		08F952AB254956E80007BDD5 /* weatherconditionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F952AA254956E80007BDD5 /* weatherconditionsUITests.swift */; };
 		08F952D4254964BE0007BDD5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F952D3254964BE0007BDD5 /* APIService.swift */; };
 		08F952D92549650C0007BDD5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F952D82549650C0007BDD5 /* Constants.swift */; };
+		08FFF6CF254BF65600BD708C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF6CE254BF65600BD708C /* MainViewModel.swift */; };
+		08FFF6D4254BFB3100BD708C /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF6D3254BFB3100BD708C /* ForecastModel.swift */; };
+		08FFF6D9254BFC1E00BD708C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF6D8254BFC1E00BD708C /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		08F952AC254956E80007BDD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08F952D3254964BE0007BDD5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		08F952D82549650C0007BDD5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		08FFF6CE254BF65600BD708C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		08FFF6D3254BFB3100BD708C /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		08FFF6D8254BFC1E00BD708C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		08076605254B06F300FA82C3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				08FFF6CE254BF65600BD708C /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -92,6 +99,7 @@
 		08076606254B06FE00FA82C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				08FFF6D3254BFB3100BD708C /* ForecastModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				08F952D82549650C0007BDD5 /* Constants.swift */,
+				08FFF6D8254BFC1E00BD708C /* Utils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -307,11 +316,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FFF6CF254BF65600BD708C /* MainViewModel.swift in Sources */,
 				08076608254B07A300FA82C3 /* APIAgent.swift in Sources */,
+				08FFF6D9254BFC1E00BD708C /* Utils.swift in Sources */,
 				08F952D92549650C0007BDD5 /* Constants.swift in Sources */,
 				08F9528D254956E70007BDD5 /* MainViewController.swift in Sources */,
 				08F95289254956E70007BDD5 /* AppDelegate.swift in Sources */,
 				08F952D4254964BE0007BDD5 /* APIService.swift in Sources */,
+				08FFF6D4254BFB3100BD708C /* ForecastModel.swift in Sources */,
 				08F9528B254956E70007BDD5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
