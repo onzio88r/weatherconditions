@@ -12,10 +12,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var opacityView: UIView!
     
-    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var flag: UILabel!
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
@@ -25,17 +25,22 @@ class MainViewController: UIViewController {
     @IBOutlet weak var maxTempLabel: UILabel!
     
     let viewModel =  MainViewModel()
+    
     private var cancellables: Set<AnyCancellable> = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
+        
         dayNightView()
         initViewData()
         bindViewModel()
         
-        viewModel.fetch()
+        viewModel.fetch(city: "Roma")
+        
+        self.textField.delegate = self
         
         
     }
@@ -48,6 +53,7 @@ class MainViewController: UIViewController {
         temperatureLabel.text       = ""
         minTempLabel.text           = ""
         maxTempLabel.text           = ""
+        flag.text                   = ""
         
     }
     
@@ -70,7 +76,7 @@ class MainViewController: UIViewController {
             backgroundImage.image = UIImage(named: "Day-\(hour/2)")
         }else {
             opacityView.isHidden = true
-            backgroundImage.image = UIImage(named: "Night-\(hour/2)")
+            backgroundImage.image = UIImage(named: "Night-\((hour-12)/2)")
         }
     }
     
@@ -100,18 +106,23 @@ class MainViewController: UIViewController {
         if String(weatherModel.temp_max) != "" {
             self.maxTempLabel.text = "\(String(weatherModel.temp_max))º"
         }
+            
+        flag.text = Flag(country: forecast.city.country)
         
         }else {
             //TODO Handle no data
         }
     }
     
-    
-    @IBAction func searchAction(_ sender: Any) {
-        
-        
-    }
+
     
     
 }
 
+extension MainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.viewModel.fetch(city: textField.text!)
+        self.view.endEditing(true)
+        return true
+    }
+}

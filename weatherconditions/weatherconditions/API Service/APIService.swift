@@ -10,14 +10,13 @@ import Combine
 
 enum WeatherAPI {
     static let agent = APIAgent()
-    static var baseUrl = URL(string: openweatherURL)!
-    
 }
 
 extension WeatherAPI {
     
     static func forecast(city: String) -> AnyPublisher<Forecast, Error> {
-         
+        let stringCity = city.replacingOccurrences(of: " ", with: "")
+        let baseUrl = URL(string: String(format: openweatherURL, stringCity))!
         let request = URLRequest(url: baseUrl) //TODO: Add parameters for selected city
            return run(request)
        }

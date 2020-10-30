@@ -17,11 +17,17 @@ final class MainViewModel: ObservableObject {
     private (set) var weatherIconData: Data!
 
     //TODO: Get parameter city name
-    func fetch() {
-        WeatherAPI.forecast(city: "Roma,it")
-            .sink(receiveCompletion: { _ in },
+    func fetch(city:String) {
+        WeatherAPI.forecast(city: city)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(_):
+                    NotificationBanner.show("No data from the search")//TODO: parse the error 
+                case .finished:
+                    print("fetch data completed")
+                }
+            },
                   receiveValue: {
-                    print($0)
                     self.forecast = $0
                     if let currentWeather = $0.list.first, currentWeather.weather.count > 0 {
                         let weather = currentWeather.weather.first
