@@ -28,6 +28,11 @@ class MainViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     
+    var forecastTableController: ForecastTableViewController!
+
+}
+
+extension MainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +68,7 @@ class MainViewController: UIViewController {
                 return
             }
             self.rederForecast(self.viewModel.forecast)
+            self.forecastTableController.listModel = self.viewModel.forecast.list
         }.store(in: &cancellables)
     }
     
@@ -72,10 +78,10 @@ class MainViewController: UIViewController {
         let hour = calendar.component(.hour, from: date)
         
         if hour < 13 {
-            opacityView.isHidden = false
+            opacityView.backgroundColor = #colorLiteral(red: 0.3303423524, green: 0.3283841014, blue: 0.3318511844, alpha: 0.645708476)
             backgroundImage.image = UIImage(named: "Day-\(hour/2)")
         }else {
-            opacityView.isHidden = true
+            opacityView.backgroundColor = #colorLiteral(red: 0.3303423524, green: 0.3283841014, blue: 0.3318511844, alpha: 0.8491010274)
             backgroundImage.image = UIImage(named: "Night-\((hour-12)/2)")
         }
     }
@@ -116,9 +122,19 @@ class MainViewController: UIViewController {
     
 
     
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ForecastTableViewController {
+            self.forecastTableController = segue.destination as! ForecastTableViewController
+        }
+    }
+    
     
 }
 
+//MARK: - Delegate 
 extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.viewModel.fetch(city: textField.text!)

@@ -22,7 +22,7 @@ final class MainViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(_):
-                    NotificationBanner.show("No data from the search")//TODO: parse the error 
+                    NotificationBanner.show("No data from the search")
                 case .finished:
                     print("fetch data completed")
                 }
