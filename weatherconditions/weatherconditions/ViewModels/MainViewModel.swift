@@ -23,7 +23,12 @@ final class MainViewModel: ObservableObject {
                   receiveValue: {
                     print($0)
                     self.forecast = $0
-                    self.fetchIcon("03d")//TODO: Pass the correct value
+                    if let currentWeather = $0.list.first, currentWeather.weather.count > 0 {
+                        let weather = currentWeather.weather.first
+                        self.fetchIcon(weather!.icon)
+                    }else {
+                        //TODO: Handle no data
+                    }
                   })
             .store(in: &disposables)
        

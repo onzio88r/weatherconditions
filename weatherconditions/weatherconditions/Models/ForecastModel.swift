@@ -9,6 +9,7 @@ import Foundation
 
 struct Forecast: Codable {
     let city: City
+    let list: [List]
 }
 
 struct City: Codable {
@@ -26,4 +27,29 @@ struct City: Codable {
 struct Coordinate: Codable {
     let lat: Double
     let lon: Double
+}
+
+struct List: Codable {
+    let dt: Int
+    let main: Main
+    let weather: [Weather]
+}
+
+struct Main: Codable {
+    let temp: Double
+    let feels_like: Double
+    let temp_min: Double
+    let temp_max: Double
+    let pressure: Int
+    let sea_level: Int
+    let grnd_level: Int
+    let humidity: Int
+    let temp_kf: Double
+}
+
+struct Weather: Codable {
+    let id: Int
+    let main: String
+    let description: String
+    let icon: String
 }
