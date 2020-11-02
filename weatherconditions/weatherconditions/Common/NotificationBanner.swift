@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationBanner {
   static let labelLeftMarging = CGFloat(16)
-  static let labelTopMargin = CGFloat(40)
+  static let labelTopMargin = CGFloat(50)
   static let animateDuration = 0.5
   static let bannerAppearanceDuration: TimeInterval = 2
   
@@ -18,13 +18,14 @@ class NotificationBanner {
     let superView = UIApplication.shared.windows.first(where: { $0.isKeyWindow })!
     let topPadding = superView.safeAreaInsets.top
 
-    let height = CGFloat(60)
+    let height = CGFloat(50)
     let width = superView.bounds.size.width
 
     let bannerView = UIView(frame: CGRect(x: 0, y: 0-height, width: width, height: height))
     bannerView.layer.opacity = 1
     bannerView.backgroundColor = UIColor.red
     bannerView.translatesAutoresizingMaskIntoConstraints = false
+    bannerView.layer.cornerRadius = 10
     
     let label = UILabel(frame: CGRect.zero)
     label.textColor = UIColor.white
