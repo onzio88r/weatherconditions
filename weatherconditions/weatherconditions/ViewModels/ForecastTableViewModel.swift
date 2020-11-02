@@ -11,9 +11,8 @@ import Combine
 class ForecastCellViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
     private (set) var weatherIconData: Data!
-}
-extension ForecastCellViewModel {
-    //MARK: - Fetch icon
+
+    
     func fetchIcon(_ icon:String){
         WeatherAPI.weatherIcon(icon: icon)
             .sink(receiveCompletion: {_ in },
@@ -22,6 +21,8 @@ extension ForecastCellViewModel {
                     self.objectWillChange.send()
                   })
             .store(in: &disposables)
+        
+        
         
     }
     

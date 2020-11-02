@@ -25,7 +25,7 @@
 		08FFF716254C5B4F00BD708C /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF715254C5B4F00BD708C /* ErrorHandler.swift */; };
 		08FFF71B254C672700BD708C /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF71A254C672700BD708C /* NotificationBanner.swift */; };
 		08FFF720254C6B1900BD708C /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF71F254C6B1900BD708C /* ForecastTableViewController.swift */; };
-		08FFF725254C6BD800BD708C /* ForecastTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF724254C6BD800BD708C /* ForecastTableViewModel.swift */; };
+		08FFF725254C6BD800BD708C /* ForecastCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF724254C6BD800BD708C /* ForecastCellViewModel.swift */; };
 		08FFF72A254C73C100BD708C /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFF729254C73C100BD708C /* ForecastTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,7 @@
 		08FFF715254C5B4F00BD708C /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		08FFF71A254C672700BD708C /* NotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBanner.swift; sourceTree = "<group>"; };
 		08FFF71F254C6B1900BD708C /* ForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewController.swift; sourceTree = "<group>"; };
-		08FFF724254C6BD800BD708C /* ForecastTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewModel.swift; sourceTree = "<group>"; };
+		08FFF724254C6BD800BD708C /* ForecastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCellViewModel.swift; sourceTree = "<group>"; };
 		08FFF729254C73C100BD708C /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				08FFF6CE254BF65600BD708C /* MainViewModel.swift */,
-				08FFF724254C6BD800BD708C /* ForecastTableViewModel.swift */,
+				08FFF724254C6BD800BD708C /* ForecastCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 				08F952D92549650C0007BDD5 /* Constants.swift in Sources */,
 				08FFF716254C5B4F00BD708C /* ErrorHandler.swift in Sources */,
 				08FFF72A254C73C100BD708C /* ForecastTableViewCell.swift in Sources */,
-				08FFF725254C6BD800BD708C /* ForecastTableViewModel.swift in Sources */,
+				08FFF725254C6BD800BD708C /* ForecastCellViewModel.swift in Sources */,
 				08F9528D254956E70007BDD5 /* MainViewController.swift in Sources */,
 				08FFF720254C6B1900BD708C /* ForecastTableViewController.swift in Sources */,
 				08F95289254956E70007BDD5 /* AppDelegate.swift in Sources */,
@@ -542,7 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.daniele.weatherconditions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -561,7 +561,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.daniele.weatherconditions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

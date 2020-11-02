@@ -19,8 +19,6 @@ struct City: Codable {
     let country: String
     let sunrise: Int
     let sunset: Int
-    //TODO: TO be completed
-    
     
 }
 

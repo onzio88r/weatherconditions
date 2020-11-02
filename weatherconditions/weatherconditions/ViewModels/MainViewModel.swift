@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 final class MainViewModel: ObservableObject {
+    // MARK: - Variables
     let objectWillChange = PassthroughSubject<Void, Never>()
     
     private var disposables: Set<AnyCancellable> = []
@@ -16,7 +17,9 @@ final class MainViewModel: ObservableObject {
     private (set) var forecast: Forecast!
     private (set) var weatherIconData: Data!
 
-    //TODO: Get parameter city name
+}
+extension MainViewModel {
+    // MARK: - Fetch city
     func fetch(city:String) {
         WeatherAPI.forecast(city: city)
             .sink(receiveCompletion: { completion in
@@ -24,7 +27,7 @@ final class MainViewModel: ObservableObject {
                 case .failure(_):
                     NotificationBanner.show("No data from the search")
                 case .finished:
-                    print("fetch data completed")
+                    NSLog("fetch data completed")
                 }
             },
                   receiveValue: {
@@ -33,13 +36,14 @@ final class MainViewModel: ObservableObject {
                         let weather = currentWeather.weather.first
                         self.fetchIcon(weather!.icon)
                     }else {
-                        //TODO: Handle no data
+                        NotificationBanner.show("No data from the search")
                     }
                   })
             .store(in: &disposables)
        
     }
     
+    // MARK: - Fetch Icon
     func fetchIcon(_ icon:String){
         WeatherAPI.weatherIcon(icon: icon)
             .sink(receiveCompletion: {_ in },
@@ -48,8 +52,6 @@ final class MainViewModel: ObservableObject {
                     self.objectWillChange.send()
                   })
             .store(in: &disposables)
-        
-        
         
     }
 }

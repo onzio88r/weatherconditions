@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 class MainViewController: UIViewController {
+    // MARK: - Outlets
+    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var opacityView: UIView!
     
@@ -24,12 +26,24 @@ class MainViewController: UIViewController {
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     
+    // MARK: - Variables
     let viewModel =  MainViewModel()
     
     private var cancellables: Set<AnyCancellable> = []
     
     var forecastTableController: ForecastTableViewController!
-
+    
+    lazy var gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.1).cgColor,
+            UIColor.black.withAlphaComponent(0.5).cgColor,
+        ]
+        gradient.locations = [0, 0.25, 1]
+        return gradient
+    }()
 }
 
 extension MainViewController {
@@ -39,17 +53,18 @@ extension MainViewController {
         
         self.hideKeyboardWhenTappedAround()
         
+        gradient.frame = view.bounds
+        opacityView.layer.addSublayer(gradient)
+        
+        
         dayNightView()
         initViewData()
         bindViewModel()
-        
-        viewModel.fetch(city: "Roma")
-        
+                
         self.textField.delegate = self
         
-        
     }
-    
+    // MARK: - Init labels
     private func initViewData(){
         cityName.text               = ""
         weatherConditionLabel.text  = ""
@@ -62,12 +77,15 @@ extension MainViewController {
         
     }
     
+    // MARK: - Model render
     private func bindViewModel() {
         viewModel.objectWillChange.sink { [weak self] in
             guard let self = self else {
                 return
             }
+            
             self.rederForecast(self.viewModel.forecast)
+            
             self.forecastTableController.listModel = self.viewModel.forecast.list
         }.store(in: &cancellables)
     }
@@ -78,10 +96,8 @@ extension MainViewController {
         let hour = calendar.component(.hour, from: date)
         
         if hour < 13 {
-            opacityView.backgroundColor = #colorLiteral(red: 0.3303423524, green: 0.3283841014, blue: 0.3318511844, alpha: 0.645708476)
             backgroundImage.image = UIImage(named: "Day-\(hour/2)")
         }else {
-            opacityView.backgroundColor = #colorLiteral(red: 0.3303423524, green: 0.3283841014, blue: 0.3318511844, alpha: 0.8491010274)
             backgroundImage.image = UIImage(named: "Night-\((hour-12)/2)")
         }
     }
@@ -90,44 +106,40 @@ extension MainViewController {
         self.cityName.text      = forecast.city.name
         
         if let currentWeather = forecast.list.first, currentWeather.weather.count > 0 {
-        
-        self.weatherConditionLabel.text = currentWeather.weather.first!.description
-        
-        self.sunriseLabel.text  = millisecondsToLocalDate(forecast.city.sunrise)
-        self.sunsetLabel.text   = millisecondsToLocalDate(forecast.city.sunset)
-        
-      
-        let image = UIImage(data: viewModel.weatherIconData)
-        weatherImage.image = image
-        
-        
-        // Weather temperature value to label
-        let weatherModel = currentWeather.main
-        if String(weatherModel.temp) != "" {
-            self.temperatureLabel.text = "\(String(Int(weatherModel.temp)))º"
-        }
-        if String(weatherModel.temp_min) != "" {
-            self.minTempLabel.text = "\(String(weatherModel.temp_min))º"
-        }
-        if String(weatherModel.temp_max) != "" {
-            self.maxTempLabel.text = "\(String(weatherModel.temp_max))º"
-        }
             
-        flag.text = Flag(country: forecast.city.country)
-        
-        }else {
-            //TODO Handle no data
+            self.weatherConditionLabel.text = currentWeather.weather.first!.description
+            
+            self.sunriseLabel.text  = millisecondsToLocalDate(forecast.city.sunrise)
+            self.sunsetLabel.text   = millisecondsToLocalDate(forecast.city.sunset)
+            
+            
+            let image = UIImage(data: viewModel.weatherIconData)
+            weatherImage.image = image
+            
+            
+            // Weather temperature value to label
+            let weatherModel = currentWeather.main
+            if String(weatherModel.temp) != "" {
+                self.temperatureLabel.text = "\(String(Int(weatherModel.temp)))º"
+            }
+            if String(weatherModel.temp_min) != "" {
+                self.minTempLabel.text = "\(String(weatherModel.temp_min))º"
+            }
+            if String(weatherModel.temp_max) != "" {
+                self.maxTempLabel.text = "\(String(weatherModel.temp_max))º"
+            }
+            
+            flag.text = Flag(country: forecast.city.country)
+            
         }
     }
     
-
+    
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ForecastTableViewController {
-            self.forecastTableController = segue.destination as! ForecastTableViewController
+            self.forecastTableController = (segue.destination as! ForecastTableViewController)
         }
     }
     

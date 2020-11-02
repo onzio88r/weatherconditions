@@ -20,6 +20,10 @@ func millisecondsToLocalDate(_ milliseconds: Int) -> String{
     
 }
 
+
+/// Transform the country code to the flag
+/// - Parameter country: ISO country code
+/// - Returns: Return a flag as String
 func Flag(country:String) -> String {
     let base = 127397
     var usv = String.UnicodeScalarView()
