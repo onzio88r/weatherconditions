@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "85F96AD0-643E-4F9B-8E11-806B7DE2A9A2"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B681311-731A-49E0-BA3E-947EA90D8E82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "weatherconditions/API Service/APIAgent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "run(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B681311-731A-49E0-BA3E-947EA90D8E82 - 13fda95bb929a4ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "weatherconditions.APIAgent.run(Foundation.URLRequest) -&gt; Combine.AnyPublisher&lt;weatherconditions.APIAgent.Response&lt;Foundation.Data&gt;, Swift.Error&gt;"
+                  moduleName = "weatherconditions"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielerapali/Documents/xcode-Develop/weatherconditions/weatherconditions/weatherconditions/API%20Service/APIAgent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "558">
+               </Location>
+               <Location
+                  uuid = "2B681311-731A-49E0-BA3E-947EA90D8E82 - b47e6eaa2471b039"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Error) -&gt; Swift.Error in weatherconditions.APIAgent.run(Foundation.URLRequest) -&gt; Combine.AnyPublisher&lt;weatherconditions.APIAgent.Response&lt;Foundation.Data&gt;, Swift.Error&gt;"
+                  moduleName = "weatherconditions"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielerapali/Documents/xcode-Develop/weatherconditions/weatherconditions/weatherconditions/API%20Service/APIAgent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8EA86E59-4EC1-4096-84AE-AA94D512E230"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "weatherconditions/Controllers/ForecastTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
